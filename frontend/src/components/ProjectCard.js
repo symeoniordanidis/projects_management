@@ -10,9 +10,10 @@ function ProjectCard({project}){
     }
 
     const handleDelete = (id) => {
-        axios.delete(`${API_URL}${id}`)
+        axios.delete(`${API_URL}${id}/`)
          .then(response=>{
             console.log('Project was deleted', response);
+            
          })
          .catch(error=> {
             console.log('There was an error deleting this project',error);
