@@ -10,7 +10,7 @@ STATUSES = (
 
 
 class Project(models.Model):
-    title = models.Charfield(max_length=100,blank=True)
+    title = models.CharField(max_length=100,blank=True)
     description = models.TextField(blank=True)
     start_date=models.DateField(blank=False)
     last_updated_date = models.DateField(auto_now=True)
