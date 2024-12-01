@@ -29,6 +29,6 @@ jobs:
     # Run database migrations
     - name: Run database migrations
       env:
-        DJANGO_SETTINGS_MODULE: 'projects_management.settings'
+        DJANGO_SETTINGS_MODULE: 'backend.settings'
       run: |
         python manage.py migrate
