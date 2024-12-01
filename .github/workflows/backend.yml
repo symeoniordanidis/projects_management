@@ -28,6 +28,7 @@ jobs:
 
     # Run database migrations
     - name: Run database migrations
+      working-directory: backend
       env:
         DJANGO_SETTINGS_MODULE: 'backend.settings'
       run: |
