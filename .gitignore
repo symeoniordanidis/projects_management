@@ -1,0 +1,9 @@
+# VS Code settings and workspace files
+.vscode/
+.vscode/*
+
+# PyCharm project files
+.idea/
+.idea/*
+
+venv/
