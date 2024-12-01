@@ -12,14 +12,16 @@ function App() {
   const [projects,setProjects] = useState([]);
 
   useEffect(()=>{
+    
    axios.get(`${API_URL}`)
    .then(response =>{
-     setProjects(response.data.results);
+    console.log(response);
+     setProjects(response.data);
    })
    .catch(error=>{
       console.error('There was an error while getting the projects!',error);
    });
-  })
+  },[]);
   
 
   return (
