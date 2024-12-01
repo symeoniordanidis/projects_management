@@ -15,7 +15,7 @@ function TeamForm(){
 
     const handleSubmit = (e) => {
 
-        axios.post(API_URL,team)
+        axios.post(`${API_URL}`,team)
             .then(response => {
                 setTeam({name:''})
             })
