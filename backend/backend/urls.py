@@ -19,12 +19,12 @@ from django.urls import path,include
 from rest_framework import routers
 from api.views import ProjectViewSet, TeamViewSet
 
-
+# router creation and registration of viewsets
 api_router = routers.DefaultRouter()
 api_router.register('projects',ProjectViewSet)
 api_router.register('teams',TeamViewSet
                     )
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/',include(api_router.urls))
+    path('api/',include(api_router.urls)) #added new url pattern for api
 ]
