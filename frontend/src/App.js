@@ -9,8 +9,9 @@ import ProjectForm from './components/ProjectForm';
 
 
 function App() {
-  const PROJECTS_API_URL = 'http://127.0.0.1:8000/api/projects/';
-  const TEAMS_API_URL = 'http://127.0.0.1:8000/api/teams/';
+  const BASE_URL = process.env.REACT_APP_BASE_API_URL;
+  const PROJECTS_API_URL = BASE_URL + '/projects/';
+  const TEAMS_API_URL = BASE_URL + '/teams/';
 
   const [projects,setProjects] = useState([]);
   const [projectToEdit,setProjectToEdit] = useState(null);
@@ -22,6 +23,7 @@ function App() {
    //Get projects
    axios.get(`${PROJECTS_API_URL}`)
    .then(response =>{
+     console.log(response);
      setProjects(response.data);
    })
    .catch(error=>{
@@ -31,6 +33,7 @@ function App() {
    //Get teams
    axios.get(`${TEAMS_API_URL}`)
    .then(response =>{
+     console.log(response);
      setTeams(response.data);
    })
    .catch(error=>{

@@ -2,7 +2,9 @@ import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 
 function ProjectForm({teams,projectToEdit,setProjectToEdit,setProjects,projects}) {
-    const API_URL = 'http://127.0.0.1:8000/api/projects/';
+    const BASE_URL = process.env.REACT_APP_BASE_API_URL;
+    const API_URL = BASE_URL +'/projects/';
+    
     const [formData,setFormData] = useState ({
         title:'',
         description:'',

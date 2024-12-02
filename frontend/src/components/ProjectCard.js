@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 
 function ProjectCard({projects,setProjects,setProjectToEdit,project,teams}){
-
-    const API_URL = 'http://127.0.0.1:8000/api/projects/';
+    const BASE_URL = process.env.REACT_APP_BASE_API_URL;
+    const API_URL = BASE_URL +'/projects/';
     
     // Status options mapping for the project status
     const statusOptions = [

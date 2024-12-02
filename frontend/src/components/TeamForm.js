@@ -2,8 +2,8 @@ import React,{useState} from 'react';
 import axios from 'axios';
 
 function TeamForm(){
-    
-    const API_URL = 'http://127.0.0.1:8000/api/teams/';
+    const BASE_URL = process.env.REACT_APP_BASE_API_URL;
+    const API_URL = BASE_URL + '/teams/';
 
     const [team,setTeam] = useState({
         name:'',
