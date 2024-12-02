@@ -104,6 +104,7 @@ function ProjectForm({teams,projectToEdit,setProjectToEdit,setProjects,projects}
                     <option key="cancelled" value="cancelled">Cancelled</option>
                 </select>
                 <select id="team" name="team" value={formData.team} onChange={handleChange}>
+                    <option value="">Select a team</option>
                     {teams.map((team)=> (
                         <option key={team.id} value={team.id}>{team.name}</option>
                     ))}

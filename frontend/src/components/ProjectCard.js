@@ -4,6 +4,12 @@ import axios from 'axios';
 function ProjectCard({projects,setProjects,setProjectToEdit,project,teams}){
 
     const API_URL = 'http://127.0.0.1:8000/api/projects/';
+    const statusOptions = [
+        {value: 'new',label:'New'},
+        {value: 'in_progress',label:'In Progress'},
+        {value: 'completed',label:'Completed'},
+        {value: 'cancelled',label:'Cancelled'}
+    ];
 
     const handleEdit = (project) => {
         console.log('Project will be edited');
@@ -25,12 +31,13 @@ function ProjectCard({projects,setProjects,setProjectToEdit,project,teams}){
     }
 
     const teamName = teams.find(team => team.id === project.team)?.name || 'No Team';
+    const statusLabel = statusOptions.find(option=>option.value === project.status)?.label || 'Unknown Status';
     return (
         <div className="card">
             <h2>{project.title}</h2>
             <p>Description: {project.description}</p>
             <p>Started at: {project.start_date}</p>
-            <p>Status: {project.status}</p>
+            <p>Status: {statusLabel}</p>
             <p>Team: {teamName}</p>
             <button onClick={()=> handleEdit(project)}>Edit</button>
             <button onClick={()=>handleDelete(project.id)}>Delete</button>
