@@ -43,7 +43,7 @@ form {
   border-radius: 8px;
 }
 
-input {
+input, select {
   margin: 8px;
   padding:10px;
   border: 1px solid #ccc;

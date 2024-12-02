@@ -26,6 +26,7 @@ function TeamForm(){
 
     return (
       <div className="form-container">
+         <h2> Teams </h2>
         <form onSubmit={handleSubmit}>
             <input
                 type="text"
