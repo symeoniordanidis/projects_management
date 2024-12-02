@@ -71,6 +71,21 @@ button {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
+.projects-container{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width:100%;
+}
+
+.forms-container{
+  display:flex;
+  flex-wrap: space-between;
+  max-width: 100%;
+  width:100%;
+  gap:10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -11,6 +11,7 @@ function ProjectForm({teams,projectToEdit,setProjectToEdit,setProjects,projects}
         team:''
     });
 
+    //populate form data if editing an existing project
     useEffect(()=>{
         if(projectToEdit) {
             setFormData({
@@ -23,14 +24,29 @@ function ProjectForm({teams,projectToEdit,setProjectToEdit,setProjects,projects}
         }
     }, [projectToEdit]);
 
+    //handle input changes and update form data
     const handleChange = (e) => {
         const {name,value} = e.target;
         setFormData({...formData,[name]:value});
     }
 
+    //clears form data
+    const handleClear = (e) => {
+        setProjectToEdit(null);
+        setFormData({
+            title:'',
+            description:'',
+            start_date:'',
+            status:'',
+            team:''
+        });
+    }
+
+    //Handle form submission for creating or updating a project
     const handleSubmit = (e) => {
         e.preventDefault();
         if(projectToEdit){
+            //Update existing project
             axios.put(`${API_URL}${projectToEdit.id}/`,formData)
             .then(response =>{
                 const updatedProjects = projects.map(project => 
@@ -38,6 +54,7 @@ function ProjectForm({teams,projectToEdit,setProjectToEdit,setProjects,projects}
                 );
                 setProjects(updatedProjects);
                 setProjectToEdit(null);
+                //Reset form data
                 setFormData({
                     title:'',
                     description:'',
@@ -50,10 +67,12 @@ function ProjectForm({teams,projectToEdit,setProjectToEdit,setProjects,projects}
                console.error('There was an error while editing the project!',error);
             });
         } else {
+            //Create a new project
             axios.post(`${API_URL}`,formData)
             .then(response =>{
                 console.log(response);
                 setProjects([...projects,response.data]);
+                //Reset form data
                 setFormData({
                     title:'',
                     description:'',
@@ -110,7 +129,7 @@ function ProjectForm({teams,projectToEdit,setProjectToEdit,setProjects,projects}
                     ))}
                 </select>
                 <button type="submit">{projectToEdit ? 'Update': 'Create'}</button>
-
+                <button type="submit" onClick={()=>handleClear()}>Clear</button>
             </form>
         </div>
     )

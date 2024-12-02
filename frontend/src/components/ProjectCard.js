@@ -4,6 +4,8 @@ import axios from 'axios';
 function ProjectCard({projects,setProjects,setProjectToEdit,project,teams}){
 
     const API_URL = 'http://127.0.0.1:8000/api/projects/';
+    
+    // Status options mapping for the project status
     const statusOptions = [
         {value: 'new',label:'New'},
         {value: 'in_progress',label:'In Progress'},
@@ -11,11 +13,13 @@ function ProjectCard({projects,setProjects,setProjectToEdit,project,teams}){
         {value: 'cancelled',label:'Cancelled'}
     ];
 
+    //Handle project editing
     const handleEdit = (project) => {
         console.log('Project will be edited');
         setProjectToEdit(project);
     }
 
+    //Handle Project deletion
     const handleDelete = (id) => {
         axios.delete(`${API_URL}${id}/`)
          .then(response=>{
@@ -30,8 +34,10 @@ function ProjectCard({projects,setProjects,setProjectToEdit,project,teams}){
 
     }
 
+    //Find the team name and status to show them in card
     const teamName = teams.find(team => team.id === project.team)?.name || 'No Team';
     const statusLabel = statusOptions.find(option=>option.value === project.status)?.label || 'Unknown Status';
+
     return (
         <div className="card">
             <h2>{project.title}</h2>

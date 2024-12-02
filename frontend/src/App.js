@@ -16,8 +16,10 @@ function App() {
   const [projectToEdit,setProjectToEdit] = useState(null);
   const [teams,setTeams] = useState([]);
 
+  //Get projects and teams when the component mounts
   useEffect(()=>{
-    
+  
+   //Get projects
    axios.get(`${PROJECTS_API_URL}`)
    .then(response =>{
      setProjects(response.data);
@@ -26,6 +28,7 @@ function App() {
       console.error('There was an error while getting the projects!',error);
    });
 
+   //Get teams
    axios.get(`${TEAMS_API_URL}`)
    .then(response =>{
      setTeams(response.data);
@@ -39,13 +42,16 @@ function App() {
 
   return (
     <div className="App">
-      <TeamForm></TeamForm>
-      <ProjectForm teams={teams} projectToEdit={projectToEdit} setProjectToEdit={setProjectToEdit} projects={projects} setProjects={setProjects}></ProjectForm>
+      <div className='forms-container'>
+        <TeamForm></TeamForm>
+        <ProjectForm teams={teams} projectToEdit={projectToEdit} setProjectToEdit={setProjectToEdit} projects={projects} setProjects={setProjects}></ProjectForm>
+      </div>
       <h2>List of Projects</h2>
-      {projects.map((project) => (
-        <ProjectCard key={project.id} project={project} teams={teams} projects={projects} setProjects={setProjects} setProjectToEdit={setProjectToEdit}></ProjectCard>
-      ))}
-
+      <div className="projects-container">
+        {projects.map((project) => (
+          <ProjectCard key={project.id} project={project} teams={teams} projects={projects} setProjects={setProjects} setProjectToEdit={setProjectToEdit}></ProjectCard>
+        ))}
+      </div>
     </div>
   );
 }

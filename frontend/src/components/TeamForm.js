@@ -9,14 +9,17 @@ function TeamForm(){
         name:'',
     });
 
+    //handle input changes and update team data
     const handleChange = (e) => {
         setTeam({name:e.target.value})
     }
 
+    //handle form submission for creating a new team
     const handleSubmit = (e) => {
 
         axios.post(`${API_URL}`,team)
             .then(response => {
+                //reset team data
                 setTeam({name:''})
             })
             .catch(error=>{
