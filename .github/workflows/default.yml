@@ -39,14 +39,25 @@ jobs:
           echo "Listing contents of /home/ubuntu/"
           ls -l /home/ubuntu
           
-          source /home/ubuntu/env/bin/activate
-
           cd /home/ubuntu/projects_management/
+
+          git pull origin main
+
+          source /home/ubuntu/env/bin/activate
           
           pip install -r requirements.txt
 
           cd backend
 
           python manage.py migrate
+
+          cd /home/ubuntu/projects_management/frontent
+
+          npm install
+          npm run build
+
+          # Restart services
+          sudo systemctl restart gunicorn
+          sudo systemctl restart nginx
 
         EOF
