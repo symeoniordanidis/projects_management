@@ -25,24 +25,25 @@ jobs:
       
         # SSH into EC2 and perform operations
         ssh -i ec2-key.pem ubuntu@${EC2_HOST} << 'EOF'
-        cd /home/ubuntu/projects_management
+          cd /home/ubuntu/projects_management
 
-        # Pull latest code from GitHub
-        git pull origin main
+          # Pull latest code from GitHub
+          git pull origin main
 
-        # Activate virtual environment and install dependencies
-        source env/bin/activate
-        pip install -r requirements.txt
+          # Activate virtual environment and install dependencies
+          source env/bin/activate
+          pip install -r requirements.txt
 
-        # Apply Django migrations
-        cd /home/ubuntu/projects_management/backend
-        python manage.py migrate
+          # Apply Django migrations
+          cd /home/ubuntu/projects_management/backend
+          python manage.py migrate
 
-         #Apply react changes
-        cd /home/ubuntu/projects_management/frontend
-        npm install
-        npm run build
+          #Apply react changes
+          cd /home/ubuntu/projects_management/frontend
+          npm install
+          npm run build
 
-        # Restart services
-        sudo systemctl restart gunicorn
-        sudo systemctl restart nginx
+          # Restart services
+          sudo systemctl restart gunicorn
+          sudo systemctl restart nginx
+        EOF
