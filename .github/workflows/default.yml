@@ -29,14 +29,7 @@ jobs:
         # SSH into EC2 instance and run a simple command
         ssh -o StrictHostKeyChecking=no -i ec2-key.pem ${EC2_USER}@${EC2_HOST} "uptime"
 
-          # Ensure the directory exists and navigate to it
-          if [ -d "/home/ubuntu/projects_management" ]; then
-            cd /home/ubuntu/projects_management
-            echo "Directory /home/ubuntu/projects_management exists."
-          else
-            echo "Directory /home/ubuntu/projects_management does not exist. Exiting."
-            exit 1
-          fi
-
-          # Activate the virtual environment
-          source env/bin/activate
+          # Debug: List the directories under /home/ubuntu
+          echo "Listing contents of /home/ubuntu"
+          ls -l /home/
+          ls -l /home/ubuntu/
