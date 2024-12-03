@@ -23,7 +23,7 @@ jobs:
         echo "${SSH_KEY}" > ec2-key.pem
         chmod 600 ec2-key.pem
       
-       # SSH into EC2 and perform operations
+        # SSH into EC2 and perform operations
         ssh -i ec2-key.pem ubuntu@${EC2_HOST} << 'EOF'
         cd /home/ubuntu/projects_management
 
