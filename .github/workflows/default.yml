@@ -38,6 +38,15 @@ jobs:
           # List the contents of /home/ubuntu/
           echo "Listing contents of /home/ubuntu/"
           ls -l /home/ubuntu
-          source /home/ubuntu/env/bin/activate
           
+          source /home/ubuntu/env/bin/activate
+
+          cd /home/ubuntu/projects_management/
+          
+          pip install -r requirements.txt
+
+          cd backend
+
+          python manage.py migrate
+
         EOF
