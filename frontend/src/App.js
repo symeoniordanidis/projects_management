@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div className="App">
-      
+      <h1>Project Management</h1>
       <div className='forms-container'>
         <TeamForm></TeamForm>
         <ProjectForm teams={teams} projectToEdit={projectToEdit} setProjectToEdit={setProjectToEdit} projects={projects} setProjects={setProjects}></ProjectForm>
