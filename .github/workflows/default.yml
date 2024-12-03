@@ -13,34 +13,36 @@ jobs:
     # Checkout the code
     - name: Checkout code
       uses: actions/checkout@v3
-
-    # Set up Python
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-
-    # Install dependencies
-    - name: Install dependencies
+    
+    - name: Deploy to EC2
+      env:
+        EC2_USER: ${{ secrets.EC2_USER }}
+        EC2_HOST: ${{ secrets.EC2_HOST }}
+        SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
       run: |
-        python -m pip install --upgrade pip
+        echo "${SSH_KEY}" > ec2-key.pem
+        chmod 600 ec2-key.pem
+      
+       # SSH into EC2 and perform operations
+        ssh -i ec2-key.pem ubuntu@${EC2_HOST} << 'EOF'
+        cd /home/ubuntu/projects_management
+
+        # Pull latest code from GitHub
+        git pull origin main
+
+        # Activate virtual environment and install dependencies
+        source env/bin/activate
         pip install -r requirements.txt
 
-    # Run database migrations
-    - name: Run database migrations
-      working-directory: backend
-      env:
-        DJANGO_SETTINGS_MODULE: 'backend.settings'
-      run: |
+        # Apply Django migrations
+        cd /home/ubuntu/projects_management/backend
         python manage.py migrate
 
-    # Frontend: Set up Node.js
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
+         #Apply react changes
+        cd /home/ubuntu/projects_management/frontend
+        npm install
+        npm run build
 
-    # Frontend: Install dependencies
-    - name: Install frontend dependencies
-      run: npm install
-      working-directory: frontend
+        # Restart services
+        sudo systemctl restart gunicorn
+        sudo systemctl restart nginx
