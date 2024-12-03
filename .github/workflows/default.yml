@@ -51,7 +51,7 @@ jobs:
 
           python manage.py migrate
 
-          cd /home/ubuntu/projects_management/frontent
+          cd /home/ubuntu/projects_management/frontend
 
           npm install
           npm run build
