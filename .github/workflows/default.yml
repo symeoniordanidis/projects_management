@@ -26,10 +26,16 @@ jobs:
         EC2_USER: ${{ secrets.EC2_USER }}
         EC2_HOST: ${{ secrets.EC2_HOST }}
       run: |
-        # SSH into EC2 instance and run a simple command
-        ssh -o StrictHostKeyChecking=no -i ec2-key.pem ${EC2_USER}@${EC2_HOST} "uptime"
+        # SSH into EC2 instance and run commands in one SSH session
+        ssh -o StrictHostKeyChecking=no -i ec2-key.pem ${EC2_USER}@${EC2_HOST} <<EOF
+          # Show the uptime of the server
+          uptime
 
-          # Debug: List the directories under /home/ubuntu
-          echo "Listing contents of /home/ubuntu"
+          # List the contents of /home/
+          echo "Listing contents of /home/"
           ls -l /home/
-          ls -l /home/ubuntu/
+
+          # List the contents of /home/ubuntu/
+          echo "Listing contents of /home/ubuntu/"
+          ls -l /home/ubuntu
+        EOF
