@@ -38,4 +38,6 @@ jobs:
           # List the contents of /home/ubuntu/
           echo "Listing contents of /home/ubuntu/"
           ls -l /home/ubuntu
+          source /home/ubuntu/env/bin/activate
+          
         EOF
