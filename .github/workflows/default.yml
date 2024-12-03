@@ -30,11 +30,11 @@ jobs:
         ssh -o StrictHostKeyChecking=no -i ec2-key.pem ${EC2_USER}@${EC2_HOST} "uptime"
 
           # Navigate to the home directory
-          cd /home/ubuntu/
+          cd /home/
 
           # Activate the virtual environment
-          source env/bin/activate
+          source ubuntu/env/bin/activate
 
           #Navigate to the project dir
-          cd /home/ubuntu/projects_management
+          cd ubuntu/projects_management
           pip install -r requirements.txt
