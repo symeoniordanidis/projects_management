@@ -27,4 +27,14 @@ jobs:
         EC2_HOST: ${{ secrets.EC2_HOST }}
       run: |
         # SSH into EC2 instance and run a simple command
-        ssh -o StrictHostKeyChecking=no -i ec2-key.pem ${EC2_USER}@${EC2_HOST} "uptime"
+        # ssh -o StrictHostKeyChecking=no -i ec2-key.pem ${EC2_USER}@${EC2_HOST} "uptime"
+
+          # Navigate to the home directory
+          cd /home/ubuntu/
+
+          # Activate the virtual environment
+          source env/bin/activate
+
+          #Navigate to the project dir
+          cd /home/ubuntu/projects_management
+          pip install -r requirements.txt
