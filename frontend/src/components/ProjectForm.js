@@ -9,7 +9,7 @@ function ProjectForm({teams,projectToEdit,setProjectToEdit,setProjects,projects}
         title:'',
         description:'',
         start_date:'',
-        status:'',
+        status:'new',
         team:''
     });
 
@@ -39,7 +39,7 @@ function ProjectForm({teams,projectToEdit,setProjectToEdit,setProjects,projects}
             title:'',
             description:'',
             start_date:'',
-            status:'',
+            status:'new',
             team:''
         });
     }
@@ -61,7 +61,7 @@ function ProjectForm({teams,projectToEdit,setProjectToEdit,setProjects,projects}
                     title:'',
                     description:'',
                     start_date:'',
-                    status:'',
+                    status:'new',
                     team:''
                 });
             })
@@ -79,7 +79,7 @@ function ProjectForm({teams,projectToEdit,setProjectToEdit,setProjects,projects}
                     title:'',
                     description:'',
                     start_date:'',
-                    status:'',
+                    status:'new',
                     team:''
                 });
             })
